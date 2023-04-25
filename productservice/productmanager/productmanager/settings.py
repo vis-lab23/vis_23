@@ -76,8 +76,12 @@ WSGI_APPLICATION = 'productmanager.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+        'ENGINE': 'django.db.backends.mysql',
+        "NAME": "products",
+        "USER": "webshopuser",
+        "PASSWORD": "240b2c6d58ff2ce2f508b49f",
+        "HOST": "127.0.0.1",
+        "PORT": "3306",
     }
 }
 
