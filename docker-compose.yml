@@ -24,10 +24,30 @@ services:
       MYSQL_PASSWORD: 240b2c6d58ff2ce2f508b49f
     ports:
       - "3306:3306"
+    healthcheck:
+      test: mysqladmin ping -h 127.0.0.1 -u root --password=$$MYSQL_PASSWORD
+      start_period: 5s
+      interval: 5s
+      timeout: 5s
+      retries: 55
     networks:
         local_dev_net:
             aliases:
                 - web-shop-db-image
+  
+  category-service:
+    build: ./category-service
+    environment:
+      DB_HOST: web-shop-db-image
+    ports:
+      - "3000:3000"
+    depends_on:
+      web-shop-db-image:
+        condition: service_healthy
+    networks:
+        local_dev_net:
+            aliases:  
+                - category-service
 
 networks:
   local_dev_net:
