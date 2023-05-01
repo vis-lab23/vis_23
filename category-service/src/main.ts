@@ -9,7 +9,7 @@ async function bootstrap() {
   const sequelize = app.get(Sequelize);
   // await sequelize.drop();
   try {
-    await sequelize.sync({ alter: true });
+    await sequelize.sync();
   } catch (err) {
     console.log(err);
   } 

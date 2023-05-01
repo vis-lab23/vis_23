@@ -18,6 +18,7 @@ import { ConfigModule } from '@nestjs/config';
       retry: { max: 10 }, 
       models: [Category],
     }),
+    SequelizeModule.forFeature([Category])
   ],
   controllers: [AppController],
   providers: [AppService],

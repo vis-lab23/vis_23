@@ -1,14 +1,15 @@
-import { AutoIncrement, Column, Model, PrimaryKey, Table } from "sequelize-typescript";
+import { AutoIncrement, Column, Model, PrimaryKey, Table, Unique } from "sequelize-typescript";
 
 @Table({
     timestamps: false
 })
 export class Category extends Model {
-    @PrimaryKey
     @AutoIncrement
+    @PrimaryKey
     @Column
-    nummer?: number;
+    id?: number;
 
+    @Unique
     @Column
     name: string;
 }
