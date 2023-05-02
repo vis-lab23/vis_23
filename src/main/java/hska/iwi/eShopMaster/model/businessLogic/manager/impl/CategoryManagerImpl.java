@@ -7,42 +7,35 @@ import hska.iwi.eShopMaster.model.database.dataAccessObjects.CategoryDAO;
 import hska.iwi.eShopMaster.model.database.dataobjects.Category;
 
 import java.io.IOException;
-import java.net.URI;
-import java.net.URISyntaxException;
-import java.net.http.HttpClient;
-import java.net.http.HttpRequest;
-import java.net.http.HttpResponse;
+import java.util.ArrayList;
 import java.util.List;
+
+import org.apache.hc.client5.http.classic.methods.HttpGet;
+import org.apache.hc.client5.http.impl.classic.CloseableHttpClient;
+import org.apache.hc.client5.http.impl.classic.CloseableHttpResponse;
+import org.apache.hc.client5.http.impl.classic.HttpClients;
 
 public class CategoryManagerImpl implements CategoryManager{
 	private CategoryDAO helper;
-	private HttpClient client;
 	private ObjectMapper objectMapper;
 	
 	public CategoryManagerImpl() {
 		helper = new CategoryDAO();
 		helper = new CategoryDAO();
-		client = HttpClient.newHttpClient();
 		objectMapper = new ObjectMapper();
 	}
 
 	public List<Category> getCategories() {
-		HttpRequest request;
+		List<Category> result = new ArrayList<Category>();
 		try {
-			request = HttpRequest.newBuilder()
-					.uri(new URI("http://cattegory-servcie:3000/category"))
-					.GET()
-					.build();
-			HttpResponse<String> response = client.send(request, HttpResponse.BodyHandlers.ofString());
-			String body = response.body();
-			return objectMapper.readValue(body, new TypeReference<List<Category>>(){});
-		} catch (URISyntaxException e) {
-			throw new RuntimeException(e);
-		} catch (IOException e) {
-			throw new RuntimeException(e);
-		} catch (InterruptedException e) {
-			throw new RuntimeException(e);
-		}
+			HttpGet httpGet = new HttpGet("http://category-service:3000/category");
+			CloseableHttpClient httpClient = HttpClients.createDefault();
+			CloseableHttpResponse response = httpClient.execute(httpGet);
+			String body = response.getEntity().toString();
+
+			result = objectMapper.readValue(body, new TypeReference<List<Category>>(){});
+		} catch (Exception e) {}
+		return result;
 	}
 
 	public Category getCategory(int id) {
