@@ -27,16 +27,16 @@ python-versions = ">=3.7.0"
 
 [[package]]
 name = "django"
-version = "4.2"
-description = "A high-level Python web framework that encourages rapid development and clean, pragmatic design."
+version = "3.2.18"
+description = "A high-level Python Web framework that encourages rapid development and clean, pragmatic design."
 category = "main"
 optional = false
-python-versions = ">=3.8"
+python-versions = ">=3.6"
 
 [package.dependencies]
-asgiref = ">=3.6.0,<4"
-sqlparse = ">=0.3.1"
-tzdata = {version = "*", markers = "sys_platform == \"win32\""}
+asgiref = ">=3.3.2,<4"
+pytz = "*"
+sqlparse = ">=0.2.2"
 
 [package.extras]
 argon2 = ["argon2-cffi (>=19.1.0)"]
@@ -79,6 +79,14 @@ optional = false
 python-versions = "*"
 
 [[package]]
+name = "pyyaml"
+version = "6.0"
+description = "YAML parser and emitter for Python"
+category = "main"
+optional = false
+python-versions = ">=3.6"
+
+[[package]]
 name = "requests"
 version = "2.29.0"
 description = "Python HTTP for Humans."
@@ -110,14 +118,6 @@ doc = ["sphinx"]
 test = ["pytest", "pytest-cov"]
 
 [[package]]
-name = "tzdata"
-version = "2023.3"
-description = "Provider of IANA time zone data"
-category = "main"
-optional = false
-python-versions = ">=2"
-
-[[package]]
 name = "urllib3"
 version = "1.26.15"
 description = "HTTP library with thread-safe connection pooling, file post, and more."
@@ -133,7 +133,7 @@ socks = ["PySocks (>=1.5.6,!=1.5.7,<2.0)"]
 [metadata]
 lock-version = "1.1"
 python-versions = "^3.10"
-content-hash = "72aa52aa58e603910a6578140550a42b134f7b49f88713fdca067b69b607e1e4"
+content-hash = "0f5297d294fe349b55bc655520988c0ca6afc1ed022db3d19914a49e81f4b067"
 
 [metadata.files]
 asgiref = []
@@ -144,7 +144,7 @@ djangorestframework = []
 idna = []
 mysqlclient = []
 pytz = []
+pyyaml = []
 requests = []
 sqlparse = []
-tzdata = []
 urllib3 = []

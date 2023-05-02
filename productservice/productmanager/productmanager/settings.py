@@ -78,8 +78,8 @@ DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
         "NAME": "products",
-        "USER": "webshopuser",
-        "PASSWORD": "240b2c6d58ff2ce2f508b49f",
+        "USER": "root",
+        "PASSWORD": "c8de110f37300a53a971749",
         "HOST": "web-shop-db-image",
         "PORT": "3306",
     }
