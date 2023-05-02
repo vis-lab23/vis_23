@@ -1,11 +1,11 @@
-from django.contrib.sites import requests
+# to create migrations for DB changes: ./manage.py makemigrations productmanager
 from django.db import models
 
 
 class Product(models.Model):
     name = models.CharField(max_length=200)
     details = models.CharField(max_length=255)
-    price = models.DecimalField(decimal_places=2, max_digits=5)
+    price = models.DecimalField(decimal_places=2, max_digits=10)
     category_id = models.PositiveBigIntegerField()
 
     # TODO: Funktionen implementieren category immer als name zurückgeben
