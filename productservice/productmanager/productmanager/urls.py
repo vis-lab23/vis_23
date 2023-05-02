@@ -16,13 +16,23 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path, include
+from rest_framework.routers import DefaultRouter
 from rest_framework.schemas import get_schema_view
 
-from productservice.productmanager.views import ProductViewSet
+from .views import ProductViewSet
+
+# Create a router and register our viewsets with it.
+router = DefaultRouter()
+router.register(r'products', ProductViewSet, basename="products")
+
+# The API URLs are now determined automatically by the router.
+urlpatterns = [
+]
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('/products', ProductViewSet),
+    path('/', include('rest_framework.urls')),
+    path('', include(router.urls)),
     path('openapi', get_schema_view(title="Your Project",
                                     description="API for all things …",
                                     version="1.0.0"), name='openapi-schema'),

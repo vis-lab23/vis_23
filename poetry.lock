@@ -118,6 +118,14 @@ doc = ["sphinx"]
 test = ["pytest", "pytest-cov"]
 
 [[package]]
+name = "uritemplate"
+version = "4.1.1"
+description = "Implementation of RFC 6570 URI Templates"
+category = "main"
+optional = false
+python-versions = ">=3.6"
+
+[[package]]
 name = "urllib3"
 version = "1.26.15"
 description = "HTTP library with thread-safe connection pooling, file post, and more."
@@ -133,7 +141,7 @@ socks = ["PySocks (>=1.5.6,!=1.5.7,<2.0)"]
 [metadata]
 lock-version = "1.1"
 python-versions = "^3.10"
-content-hash = "0f5297d294fe349b55bc655520988c0ca6afc1ed022db3d19914a49e81f4b067"
+content-hash = "bc0497a2ba145107da18f913f078e3239db8c13bcac21e1229dcbe24577a9fe7"
 
 [metadata.files]
 asgiref = []
@@ -147,4 +155,5 @@ pytz = []
 pyyaml = []
 requests = []
 sqlparse = []
+uritemplate = []
 urllib3 = []
