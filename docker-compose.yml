@@ -53,6 +53,7 @@ services:
     build: ./productservice
     environment:
       DB_HOST: web-shop-db-image
+      CATEGORY_SERVICE_HOST: category-service
     ports:
       - "8000:8000"
     depends_on:
