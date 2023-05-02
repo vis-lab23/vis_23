@@ -80,7 +80,7 @@ DATABASES = {
         "NAME": "products",
         "USER": "webshopuser",
         "PASSWORD": "240b2c6d58ff2ce2f508b49f",
-        "HOST": "127.0.0.1",
+        "HOST": "web-shop-db-image",
         "PORT": "3306",
     }
 }

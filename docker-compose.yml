@@ -49,6 +49,20 @@ services:
             aliases:  
                 - category-service
 
+  productservice:
+    build: ./productservice
+    environment:
+      DB_HOST: web-shop-db-image
+    ports:
+      - "8000:8000"
+    depends_on:
+      web-shop-db-image:
+        condition: service_healthy
+    networks:
+      local_dev_net:
+        aliases:
+          - productservice
+
 networks:
   local_dev_net:
     driver: bridge
