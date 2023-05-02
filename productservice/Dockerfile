@@ -13,5 +13,6 @@ WORKDIR /code
 
 EXPOSE 8000
 
-# runs the production server
-ENTRYPOINT ["python manage.py migrate && runserver 0.0.0.0:8000"]
+ADD entrypoint.sh /entrypoint.sh
+RUN chmod a+x /entrypoint.sh
+ENTRYPOINT ["/entrypoint.sh"]
