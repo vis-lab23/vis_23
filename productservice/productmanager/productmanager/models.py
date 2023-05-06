@@ -9,7 +9,7 @@ from .exceptions import CategoryServiceUnavailable
 
 
 class Product(models.Model):
-    name = models.CharField(max_length=200)
+    name = models.CharField(max_length=200, unique=True)
     details = models.CharField(max_length=255)
     price = models.DecimalField(decimal_places=2, max_digits=10)
     category_id = models.PositiveBigIntegerField(null=True, blank=True)
@@ -31,9 +31,6 @@ class Product(models.Model):
         return response.get('name')
 
     # TODO: Funktionen implementieren category immer als name zurückgeben
-    def get_product_by_name(self, name):  # tdb
-        print('')
-
     def get_products_for_search_values(self, search_value, search_min_price, search_max_price):  # tbd
         print('')
 

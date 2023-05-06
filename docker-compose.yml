@@ -50,7 +50,9 @@ services:
                 - category-service
 
   productservice:
-    build: ./productservice
+    build:
+      context: ./productservice
+      target: prod
     environment:
       DB_HOST: web-shop-db-image
       CATEGORY_SERVICE_HOST: category-service
