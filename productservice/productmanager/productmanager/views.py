@@ -1,35 +1,48 @@
-from django.db.models import Q
-from django.http import Http404
-from rest_framework import viewsets, filters
-from rest_framework.generics import get_object_or_404
+from django_filters.rest_framework import DjangoFilterBackend
+from rest_framework import filters as FrameworkFilters
+from rest_framework import mixins, status, viewsets
+from rest_framework.decorators import action
+from rest_framework.response import Response
+from rest_framework.schemas.openapi import AutoSchema
 
-from .models import Product
-from .serializers import ProductSerializer
+import exceptions
+import filters
+import models
+import serializers
 
 
-class ProductViewSet(viewsets.ModelViewSet):
-    queryset = Product.objects.all()
-    serializer_class = ProductSerializer
-    filter_backends = [filters.SearchFilter]
-    search_fields = ['name', 'details', 'price']
+class ProductByIDViewSet(viewsets.ModelViewSet):
+    queryset = models.Product.objects.all()
+    serializer_class = serializers.ProductSerializer
+    filter_backends = [FrameworkFilters.SearchFilter, DjangoFilterBackend]
+    filterset_class = filters.ProductFilter
+    search_fields = ["name", "details", "price"]
+    lookup_value_regex = "[0-9]+"
 
-    def retrieve(self, request, *args, **kwargs):
-        """
-        Lookup per ID or per product name is possible
-        """
-        return super().retrieve(self, request, *args, **kwargs)
+    @action(
+        methods=["delete"], detail=False, url_path="category/(?P<category_id>[0-9]+)"
+    )
+    def category(self, request, pk=None, *args, **kwargs):
+        cid = kwargs.get("category_id", None)
+        if cid == None:
+            raise exceptions.CategoryIDMissing
 
-    def get_object(self):
-        queryset = self.get_queryset()
-        lookup_value = self.kwargs[self.lookup_field]
-        obj = None
-        try:
-            obj = queryset.get(pk=int(lookup_value))
-        except ValueError:
-            obj = queryset.get(name=lookup_value)
+        qs = self.get_queryset()
+        qs.filter(category_id=kwargs.get("category_id")).delete()
 
-        if obj is None:
-            raise Http404
+        return Response(status=status.HTTP_204_NO_CONTENT)
 
-        self.check_object_permissions(self.request, obj)
-        return obj
+
+class ProductByNameViewSet(
+    mixins.RetrieveModelMixin,
+    mixins.UpdateModelMixin,
+    mixins.DestroyModelMixin,
+    viewsets.GenericViewSet,
+):
+    schema = AutoSchema(operation_id_base="ProductByName")
+    queryset = models.Product.objects.all()
+    serializer_class = serializers.ProductSerializer
+    filter_backends = [FrameworkFilters.SearchFilter]
+    search_fields = ["name", "details", "price"]
+    lookup_field = "name"
+    lookup_value_regex = "[0-9A-Za-z]+"
