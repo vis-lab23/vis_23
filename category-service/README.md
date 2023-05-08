@@ -58,6 +58,10 @@ $ npm run test:e2e
 $ npm run test:cov
 ```
 
+## OpenAPI Schema
+* [OpenAPI UI](http://127.0.0.1:3000/openapi/)
+* [OpenAPI JSON](http://127.0.0.1:3000/openapi-json)
+
 ## Support
 
 Nest is an MIT-licensed open source project. It can grow thanks to the sponsors and support by the amazing backers. If you'd like to join them, please [read more here](https://docs.nestjs.com/support).
