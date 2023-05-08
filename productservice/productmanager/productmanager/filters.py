@@ -2,7 +2,7 @@ from typing import List
 
 from django_filters import rest_framework as filters
 
-import models
+from . import models
 
 
 class ProductFilter(filters.FilterSet):

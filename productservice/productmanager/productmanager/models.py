@@ -5,8 +5,8 @@ from django.db import models
 from rest_framework import status
 from rest_framework.exceptions import NotFound
 
-import exceptions
-import settings
+from . import exceptions
+from . import settings
 
 
 class Product(models.Model):

@@ -4,7 +4,7 @@ from django.views.generic import TemplateView
 from rest_framework.routers import DefaultRouter
 from rest_framework.schemas import get_schema_view
 
-import views
+from . import views
 
 router = DefaultRouter()
 router.register(r"products", views.ProductByIDViewSet, basename="products-by-id")

@@ -5,10 +5,10 @@ from rest_framework.decorators import action
 from rest_framework.response import Response
 from rest_framework.schemas.openapi import AutoSchema
 
-import exceptions
-import filters
-import models
-import serializers
+from . import exceptions
+from . import filters
+from . import models
+from . import serializers
 
 
 class ProductByIDViewSet(viewsets.ModelViewSet):
@@ -28,7 +28,7 @@ class ProductByIDViewSet(viewsets.ModelViewSet):
             raise exceptions.CategoryIDMissing
 
         qs = self.get_queryset()
-        qs.filter(category_id=kwargs.get("category_id")).delete()
+        qs.filter(category_id=cid).delete()
 
         return Response(status=status.HTTP_204_NO_CONTENT)
 

@@ -2,9 +2,9 @@ import requests
 from rest_framework import serializers, status
 from rest_framework.exceptions import NotFound
 
-import exceptions
-import models
-import settings
+from . import exceptions
+from . import models
+from . import settings
 
 
 class ProductSerializer(serializers.ModelSerializer):
@@ -33,8 +33,6 @@ class ProductSerializer(serializers.ModelSerializer):
 
         response = r.json()
 
-        print(response)
-        print(type(response))
         category_id: str = response.get("id")
 
         validated_data.pop("category")
