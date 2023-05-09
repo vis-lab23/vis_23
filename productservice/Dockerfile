@@ -17,7 +17,7 @@ RUN rm -rf /var/cache/apk/
 
 FROM base as builder-base
 
-RUN apt-get install -y --no-install-recommends build-essential
+RUN apt-get install -y --no-install-recommends build-essential wget
 RUN wget -q -O - -o /dev/null https://install.python-poetry.org | python3 -
 
 WORKDIR $PYSETUP_PATH
