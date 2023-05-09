@@ -34,6 +34,6 @@ WORKDIR /code
 
 EXPOSE 8000
 
-COPY ./entrypoint.sh ./entrypoint.sh
+COPY ./entrypoint.sh .
 RUN chmod a+x /code/entrypoint.sh
-ENTRYPOINT ["/code/entrypoint.sh"]
+CMD ["sh", "entrypoint.sh"]
