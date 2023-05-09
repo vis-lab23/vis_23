@@ -1,4 +1,4 @@
-FROM docker.io/library/python:3.10.11-alpine3.17 as base
+FROM docker.io/library/python:3.10.11-slim as base
 ENV PYTHONUNBUFFERED=1 \
     PYTHONDONTWRITEBYTECODE=1 \
     PIP_NO_CACHE_DIR=off \
@@ -11,24 +11,23 @@ ENV PYTHONUNBUFFERED=1 \
     VENV_PATH="/opt/pysetup/.venv"
 
 ENV PATH="$POETRY_HOME/bin:$VENV_PATH/bin:$PATH"
-RUN apk add --no-cache mariadb-connector-c-dev
+RUN apt-get update
+RUN apt-get install -y --no-install-recommends default-libmysqlclient-dev
 RUN rm -rf /var/cache/apk/
 
 FROM base as builder-base
 
-RUN apk add --no-cache mariadb-dev build-base
+RUN apt-get install -y --no-install-recommends build-essential
 RUN wget -q -O - -o /dev/null https://install.python-poetry.org | python3 -
-
-FROM builder-base as builder
 
 WORKDIR $PYSETUP_PATH
 COPY ./poetry.lock ./pyproject.toml ./
-RUN poetry install --only main
+RUN /opt/poetry/bin/poetry  install --only main
 
 FROM base as prod
 
-COPY --from=builder $POETRY_HOME $POETRY_HOME
-COPY --from=builder $PYSETUP_PATH $PYSETUP_PATH
+COPY --from=builder-base $POETRY_HOME $POETRY_HOME
+COPY --from=builder-base $PYSETUP_PATH $PYSETUP_PATH
 
 COPY productmanager code
 WORKDIR /code
