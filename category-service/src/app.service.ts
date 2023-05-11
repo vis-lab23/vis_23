@@ -1,13 +1,17 @@
 import { Injectable } from '@nestjs/common';
 import { InjectModel } from '@nestjs/sequelize';
 import { Category } from './models/category.model';
+import { Sequelize } from 'sequelize-typescript';
+import { ProductClientService } from './product-client/product-client.service';
 
 @Injectable()
 export class AppService {
   constructor(
     @InjectModel(Category)
     private readonly categoryModel: typeof Category,
-  ) {}
+    private readonly productClient: ProductClientService,
+    private readonly sequelize: Sequelize,
+  ) { }
 
   getHello(): string {
     return 'Hello World!';
@@ -36,10 +40,7 @@ export class AppService {
   }
 
   async delCategory(id: number) {
-    await this.categoryModel.destroy({
-      where: {
-        id,
-      }
-    });
+    await this.productClient.deleteByCategoryId(id);
+    await this.categoryModel.destroy({ where: { id } });
   }
 }

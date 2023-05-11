@@ -1,5 +1,7 @@
 import { Controller, Delete, Get, HttpException, HttpStatus, Logger, Param, Post, Query } from '@nestjs/common';
 import { AppService } from './app.service';
+import sequelize, { Transaction } from 'sequelize';
+import { Sequelize } from 'sequelize-typescript';
 
 @Controller()
 export class AppController {
