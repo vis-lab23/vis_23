@@ -39,6 +39,7 @@ services:
     build: ./category-service
     environment:
       DB_HOST: web-shop-db-image
+      PRODUCT_SERVICE_ADRESS: http://productservice:8000/api/v1/products/category
     ports:
       - "3000:3000"
     depends_on:
