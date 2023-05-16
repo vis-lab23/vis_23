@@ -1,10 +1,9 @@
-import { HttpService } from '@nestjs/axios';
 import { HttpException, Injectable, Logger } from '@nestjs/common';
 import fetch from 'node-fetch';
 
 @Injectable()
 export class ProductClientService {
-    constructor(private readonly httpService: HttpService) {}
+    constructor() {}
     private readonly logger = new Logger(ProductClientService.name);
 
     async deleteByCategoryId(id: number) {

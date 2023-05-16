@@ -1,7 +1,8 @@
-import { Controller, Delete, Get, HttpException, HttpStatus, Logger, Param, Post, Query } from '@nestjs/common';
+import { Controller, Delete, Get, Header, HttpException, HttpStatus, Logger, Param, Post, Query } from '@nestjs/common';
 import { AppService } from './app.service';
 import sequelize, { Transaction } from 'sequelize';
 import { Sequelize } from 'sequelize-typescript';
+import * as os from 'os';
 
 @Controller()
 export class AppController {
@@ -10,12 +11,14 @@ export class AppController {
   private readonly logger = new Logger(AppController.name);
 
   @Get()
+  @Header('x-k8s-pod', os.hostname())
   getHello(): string {
     this.logger.log('Get Hello')
     return this.appService.getHello();
   }
 
   @Get('category')
+  @Header('x-k8s-pod', os.hostname())
   async getCategories(@Query('name') name: string) {
     this.logger.log('Get Categories - name: ' + name);
     return name != undefined
@@ -24,6 +27,7 @@ export class AppController {
   }
 
   @Get('category/:id')
+  @Header('x-k8s-pod', os.hostname())
   async getCategory(@Param('id') id: number) {
     this.logger.log('Get Category - Id: ' + id);
     const result = await this.appService.getCategory(id); 
@@ -37,6 +41,7 @@ export class AppController {
   }
 
   @Post('category')
+  @Header('x-k8s-pod', os.hostname())
   async addCategory(@Query('name') name: string) {
     if (!name) {
       throw new HttpException(
@@ -49,6 +54,7 @@ export class AppController {
   }
 
   @Delete('category/:id')
+  @Header('x-k8s-pod', os.hostname())
   async delCategory(@Param('id') id: number) {
     this.logger.log('Delete Categoriy - Id: ' + id);
     await this.appService.delCategory(id);
