@@ -11,10 +11,8 @@ spec:
   accessModes:
     - ReadWriteOnce
   hostPath:
-    path: "./.data/db"
-
+    path: "/mnt/data"
 ---
-
 apiVersion: v1
 kind: PersistentVolumeClaim
 metadata:

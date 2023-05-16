@@ -9,5 +9,6 @@ spec:
   - port: 3000
     protocol: TCP
     targetPort: 3000
+  type: LoadBalancer
   selector:
     app: category-service
