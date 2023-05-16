@@ -1,0 +1,25 @@
+# Category-Service
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: category-service
+  labels:
+    app: category-service
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: category-service
+  template:
+    metadata:
+      labels:
+        app: category-service
+    spec:
+      containers:
+      - name: category-service
+        image: docker.io/slim38/category-service
+        ports:
+        - containerPort: 3000
+        env:
+        - name: DB_HOST
+          value: mysql
