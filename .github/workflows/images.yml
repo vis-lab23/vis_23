@@ -38,7 +38,7 @@ jobs:
         uses: docker/build-push-action@v4
         with:
           context: docker/
-          file: DockerfileMySQL
+          file: docker/DockerfileMySQL
           push: true
           pull: true
           tags:  ghcr.io/${{ github.repository }}/mysql
