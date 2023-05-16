@@ -25,7 +25,7 @@ spec:
         app: mysql
     spec:
       containers:
-      - image: mysql
+      - image: ghcr.io/vis-lab23/vis_23/mysql:latest
         name: mysql
         env:
           # Use secret in real usage
