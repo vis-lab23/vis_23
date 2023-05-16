@@ -5,12 +5,11 @@ on:
   pull_request:
     branches: [ "main", "master" ]
 
-jobs:
-  push:
-    runs-on: ubuntu-latest
-    permissions:
+permissions:
       packages: write
       contents: read
+
+jobs:
   build:
     runs-on: ubuntu-latest
     steps:
