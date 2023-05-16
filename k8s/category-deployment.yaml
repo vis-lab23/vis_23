@@ -17,7 +17,7 @@ spec:
     spec:
       containers:
       - name: category-service
-        image: docker.io/slim38/category-service
+        image: ghcr.io/vis-lab23/vis_23/category-service:latest
         ports:
         - containerPort: 3000
         env:
