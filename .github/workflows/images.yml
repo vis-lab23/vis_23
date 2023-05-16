@@ -1,4 +1,4 @@
-name: Build and uplaod images
+name: Build and upload images
 on:
   push:
     branches: [ "main", "master" ]
