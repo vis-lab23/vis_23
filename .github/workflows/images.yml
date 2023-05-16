@@ -25,22 +25,27 @@ jobs:
         with:
           context: category-service/
           push: true
+          pull: true
           tags:  ghcr.io/${{ github.repository }}/category-service
       - name: Build and push product-service
         uses: docker/build-push-action@v4
         with:
           context: productservice/
           push: true
+          pull: true
           tags:  ghcr.io/${{ github.repository }}/productservice
       - name: Build and push mysql
         uses: docker/build-push-action@v4
         with:
-          context: docker/DockerfileMySQL
+          context: docker/
+          file: DockerfileMySQL
           push: true
+          pull: true
           tags:  ghcr.io/${{ github.repository }}/mysql
       - name: Build and push legacy web service
         uses: docker/build-push-action@v4
         with:
-          context: docker/Dockerfile
+          context: docker/
           push: true
+          pull: true
           tags:  ghcr.io/${{ github.repository }}/legacy-web-service
