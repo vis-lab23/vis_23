@@ -37,7 +37,7 @@ jobs:
       - name: Build and push mysql
         uses: docker/build-push-action@v4
         with:
-          context: docker/
+          context: ./
           file: docker/DockerfileMySQL
           push: true
           pull: true
@@ -45,7 +45,7 @@ jobs:
       - name: Build and push legacy web service
         uses: docker/build-push-action@v4
         with:
-          context: docker/
+          context: ./
           push: true
           pull: true
           tags:  ghcr.io/${{ github.repository }}/legacy-web-service
