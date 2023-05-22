@@ -50,3 +50,10 @@ jobs:
           push: true
           pull: true
           tags:  ghcr.io/${{ github.repository }}/legacy-web-service
+      - name: Build and push reverse proxy
+        uses: docker/build-push-action@v4
+        with:
+          context: k8s/apache
+          push: true
+          pull: true
+          tags:  ghcr.io/${{ github.repository }}/reverse-proxy
