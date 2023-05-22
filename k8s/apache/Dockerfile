@@ -10,7 +10,7 @@ RUN apt-get install -y -qq --no-install-recommends apache2 && \
     mkdir /var/lock/apache2 && mkdir /var/run/apache2
 
 # Config Apache
-# COPY index.html /var/www/html/index.html
+COPY index.html /var/www/html/index.html
 COPY 000-default.conf  /etc/apache2/sites-enabled/000-default.conf
 
 EXPOSE 80
