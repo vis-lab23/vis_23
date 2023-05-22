@@ -18,7 +18,7 @@ spec:
         run: apache
     spec:
       containers:
-      - image: ghcr.io/vis-lab23/vis_23/reverse-proxy
+      - image: ghcr.io/vis-lab23/vis_23/reverse-proxy:latest
         name: apache
         ports:
         - containerPort: 80
