@@ -18,7 +18,7 @@ spec:
         run: apache
     spec:
       containers:
-      - image: docker.io/ewolff/microservice-kubernetes-demo-apache:latest
+      - image: ghcr.io/vis-lab23/vis_23/reverse-proxy
         name: apache
         ports:
         - containerPort: 80
