@@ -23,3 +23,5 @@ spec:
         env:
         - name: DB_HOST
           value: mysql
+        - name: PRODUCT_SERVICE_ADRESS
+          value: http://product-service:8000/api/v1/products

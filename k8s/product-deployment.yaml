@@ -19,7 +19,9 @@ spec:
       - name: product-service
         image: ghcr.io/vis-lab23/vis_23/productservice:latest
         env:
-          - name: CATEGORY_SERVICE_HOST
-            value: category-service
+        - name: CATEGORY_SERVICE_HOST
+          value: category-service
+        - name: DB_HOST
+          value: mysql
         ports:
         - containerPort: 8000
