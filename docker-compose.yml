@@ -6,6 +6,9 @@ services:
       dockerfile: ./docker/Dockerfile
     ports:
       - "8888:8080"
+    environment:
+      CATEGORY_SERVICE: http://category-service:3000
+      PRODUCT_SERVICE: http://productservice:8000/api/v1
     networks:
       local_dev_net:
           aliases:
