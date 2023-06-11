@@ -12,7 +12,7 @@ class ProductSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = models.Product
-        fields = ["name", "details", "price", "category"]
+        fields = ["id", "name", "details", "price", "category"]
 
     def create(self, validated_data: dict):
         category_name: str = self.validated_data.get("category")
