@@ -1,0 +1,26 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: e-shop
+  labels:
+    app: e-shop
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: e-shop
+  template:
+    metadata:
+      labels:
+        app: e-shop
+    spec:
+      containers:
+      - name: e-shop
+        image: ghcr.io/vis-lab23/vis_23/legacy-web-service:latest
+        ports:
+        - containerPort: 8080
+        env:
+        - name: CATEGORY_SERVICE
+          value: http://category-service:3000
+        - name: PRODUCT_SERVICE
+          value: http://product-service:8000/api/v1

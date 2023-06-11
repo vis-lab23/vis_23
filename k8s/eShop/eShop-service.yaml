@@ -1,0 +1,14 @@
+apiVersion: v1
+kind: Service
+metadata:
+  labels:
+    app: e-shop
+  name: e-shop
+spec:
+  ports:
+  - port: 8080
+    appProtocol: http
+    targetPort: 8080
+  type: LoadBalancer
+  selector:
+    app: e-shop
