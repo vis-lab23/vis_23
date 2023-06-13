@@ -26,4 +26,5 @@ urlpatterns = [
         ),
         name="swagger-ui",
     ),
+    path('', include('django_prometheus.urls')),
 ]
