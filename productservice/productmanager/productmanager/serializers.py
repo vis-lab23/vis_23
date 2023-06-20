@@ -17,7 +17,7 @@ class ProductSerializer(serializers.ModelSerializer):
     def create(self, validated_data: dict):
         category_name: str = self.validated_data.get("category")
 
-        category_service_url: str = f"{settings.CATEGORY_SERVICE_SCHEME}://{settings.CATEGORY_SERVICE_HOST}:{settings.CATEGORY_SERVICE_PORT}/category"
+        category_service_url: str = f"{settings.CUSTOM_CATEGORY_SERVICE_SCHEME}://{settings.CUSTOM_CATEGORY_SERVICE_HOST}:{settings.CUSTOM_CATEGORY_SERVICE_PORT}/category"
 
         try:
             r: requests.Response = requests.get(

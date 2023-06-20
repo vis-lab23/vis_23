@@ -85,9 +85,9 @@ DATABASES = {
         "PORT": "3306",
     }
 }
-CATEGORY_SERVICE_SCHEME = os.environ.get("CATEGORY_SERVICE_URL", "http")
-CATEGORY_SERVICE_HOST = os.environ.get("CATEGORY_SERVICE_HOST", "category-service")
-CATEGORY_SERVICE_PORT = os.environ.get("CATEGORY_SERVICE_PORT", "3000")
+CUSTOM_CATEGORY_SERVICE_SCHEME = os.environ.get("CATEGORY_SERVICE_URL", "http")
+CUSTOM_CATEGORY_SERVICE_HOST = os.environ.get("CUSTOM_CATEGORY_SERVICE_HOST", "category-service")
+CUSTOM_CATEGORY_SERVICE_PORT = os.environ.get("CUSTOM_CATEGORY_SERVICE_PORT", "3000")
 
 # Password validation
 # https://docs.djangoproject.com/en/4.2/ref/settings/#auth-password-validators

@@ -59,7 +59,7 @@ services:
       target: prod
     environment:
       DB_HOST: mysql
-      CATEGORY_SERVICE_HOST: category-service
+      CUSTOM_CATEGORY_SERVICE_HOST: category-service
     ports:
       - "8000:8000"
     depends_on:
