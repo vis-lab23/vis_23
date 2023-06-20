@@ -51,3 +51,17 @@ Details can be found [here](https://github.com/docker-library/mysql/issues/51)
 ## <a name="license"></a>License
 Copyright (c) 2017-2018 Manuel Vogel
 Source code is open source and released under the MIT license.
+
+## Setup Minikube
+```bash
+minikube start
+minikube addons enable metrics-server
+minikube addons enable dashboard
+istioctl install --set profile=demo -y
+kubectl label namespace default istio-injection=enabled
+kubectl apply -f "k8s/db/*.yaml"
+kubectl apply -f https://raw.githubusercontent.com/istio/istio/release-1.18/samples/addons/kiali.yaml
+kubectl apply -f https://raw.githubusercontent.com/istio/istio/release-1.18/samples/addons/prometheus.yaml
+kubectl apply -f https://raw.githubusercontent.com/istio/istio/release-1.18/samples/addons/grafana.yaml
+kubectl apply -f "k8s/**/*.yaml"
+```
