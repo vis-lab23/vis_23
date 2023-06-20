@@ -52,13 +52,18 @@ public class ProductManagerImpl implements ProductManager {
 	public List<Product> getProductsForSearchValues(String searchDescription,
 		Double searchMinPrice, Double searchMaxPrice) {
 		List<Product> result = new ArrayList<Product>();
+		String url = System.getenv("PRODUCT_SERVICE") +
+				"/products?search=" + searchDescription;
+		if (searchMinPrice != null) {
+			url += "&min_price=" + searchMinPrice;
+		}
+
+		if (searchMaxPrice != null) {
+			url += "&max_price=" + searchMaxPrice;
+		}
+
 		try {
-			HttpGet httpGet = new HttpGet(
-				System.getenv("PRODUCT_SERVICE") + 
-				"/products?search=" + searchDescription +
-				"&min_price=" + searchMinPrice +
-				"&max_price=" + searchMaxPrice
-			);
+			HttpGet httpGet = new HttpGet(url);
 			String responseString = executeRequest(httpGet);
 			result = objectMapper.readValue(responseString, typeReference);
 			System.out.println(responseString);
