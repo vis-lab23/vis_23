@@ -19,7 +19,7 @@ class Product(models.Model):
 
     @property
     def category(self) -> str:
-        category_service_url: str = f"{settings.CATEGORY_SERVICE_SCHEME}://{settings.CATEGORY_SERVICE_HOST}:{settings.CATEGORY_SERVICE_PORT}/category/{self.category_id}"
+        category_service_url: str = f"{settings.CUSTOM_CATEGORY_SERVICE_SCHEME}://{settings.CUSTOM_CATEGORY_SERVICE_HOST}:{settings.CUSTOM_CATEGORY_SERVICE_PORT}/category/{self.category_id}"
 
         try:
             r: requests.Response = requests.get(category_service_url)
