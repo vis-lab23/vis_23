@@ -19,6 +19,10 @@ spec:
         image: ghcr.io/vis-lab23/vis_23/legacy-web-service:latest
         ports:
         - containerPort: 8080
+        resources:
+          requests:
+            memory: "2Gi"
+            cpu: "1000m"
         env:
         - name: CATEGORY_SERVICE
           value: http://category-service:3000
